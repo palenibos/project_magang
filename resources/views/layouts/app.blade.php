@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SiDriver BPU - Sistem Pendataan Driver BPU BPJS Ketenagakerjaan ShopeeFood">
-    <title>@yield('title', 'SiDriver BPU') — BPJS Ketenagakerjaan</title>
+    <meta name="description" content="DriverNext - Sistem Pendataan Driver BPU BPJS Ketenagakerjaan">
+    <title>@yield('title', 'DriverNext') — BPJS Ketenagakerjaan</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         [x-cloak] { display: none !important; }
@@ -15,20 +15,20 @@
 <div class="flex h-screen overflow-hidden">
 
     {{-- ===== SIDEBAR ===== --}}
-    <aside class="w-64 flex-shrink-0 bg-gradient-to-b from-green-800 to-green-900 text-white flex flex-col shadow-xl">
+    <aside class="w-64 flex-shrink-0 bg-primary text-white flex flex-col shadow-xl">
 
         {{-- Logo & Brand --}}
-        <div class="px-6 py-5 border-b border-green-700">
+        <div class="px-6 py-5 border-b border-white/20">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h2m2-10h5l3 3v5h-2m-5 0H9"/>
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold leading-tight">SiDriver BPU</h1>
-                    <p class="text-green-300 text-xs">BPJS Ketenagakerjaan</p>
+                    <h1 class="text-lg font-bold leading-tight">DriverNext</h1>
+                    <p class="text-white/70 text-xs">BPJS Ketenagakerjaan</p>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             @php
                 $navClass = fn($route) => request()->routeIs($route)
                     ? 'flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/20 text-white font-semibold text-sm shadow-inner'
-                    : 'flex items-center gap-3 px-4 py-2.5 rounded-xl text-green-100 hover:bg-white/10 hover:text-white text-sm transition-all duration-150';
+                    : 'flex items-center gap-3 px-4 py-2.5 rounded-xl text-white/70 hover:bg-white/10 hover:text-white text-sm transition-all duration-150';
             @endphp
 
             <a href="{{ route('dashboard') }}" class="{{ $navClass('dashboard') }}">
@@ -48,7 +48,7 @@
             </a>
 
             <div class="pt-2 pb-1">
-                <p class="text-green-400 text-xs font-semibold uppercase tracking-wider px-4">Data Driver</p>
+                <p class="text-white/80 text-xs font-semibold uppercase tracking-wider px-4">Data Driver</p>
             </div>
 
             <a href="{{ route('drivers.index') }}" class="{{ $navClass('drivers.index') }}">
@@ -62,7 +62,7 @@
             </a>
 
             <div class="pt-2 pb-1">
-                <p class="text-green-400 text-xs font-semibold uppercase tracking-wider px-4">Rekap</p>
+                <p class="text-white/80 text-xs font-semibold uppercase tracking-wider px-4">Rekap</p>
             </div>
 
             <a href="{{ route('rekap.bulanan') }}" class="{{ $navClass('rekap.bulanan') }}">
@@ -76,7 +76,7 @@
             </a>
 
             <div class="pt-2 pb-1">
-                <p class="text-green-400 text-xs font-semibold uppercase tracking-wider px-4">Laporan</p>
+                <p class="text-white/80 text-xs font-semibold uppercase tracking-wider px-4">Laporan</p>
             </div>
 
             <a href="{{ route('export.index') }}" class="{{ $navClass('export.index') }}">
@@ -86,19 +86,19 @@
         </nav>
 
         {{-- User Profile & Logout --}}
-        <div class="px-4 py-4 border-t border-green-700">
+        <div class="px-4 py-4 border-t border-white/20">
             <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                <div class="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                 </div>
                 <div class="flex-1 min-w-0">
                     <p class="text-white text-sm font-medium truncate">{{ auth()->user()->name }}</p>
-                    <p class="text-green-300 text-xs truncate">{{ auth()->user()->email }}</p>
+                    <p class="text-white/70 text-xs truncate">{{ auth()->user()->email }}</p>
                 </div>
             </div>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-green-200 hover:bg-white/10 hover:text-white text-sm transition-all duration-150">
+                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-white/70 hover:bg-white/10 hover:text-white text-sm transition-all duration-150">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
                     Keluar
                 </button>
@@ -113,7 +113,7 @@
         <header class="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between shadow-sm">
             <div>
                 <h2 class="text-xl font-bold text-gray-800">@yield('page-title', 'Dashboard')</h2>
-                <p class="text-sm text-gray-500 mt-0.5">@yield('page-subtitle', 'Selamat datang di SiDriver BPU')</p>
+                <p class="text-sm text-gray-500 mt-0.5">@yield('page-subtitle', 'Selamat datang di DriverNext')</p>
             </div>
             <div class="text-right">
                 <p class="text-sm font-medium text-gray-700">{{ now()->isoFormat('dddd, D MMMM YYYY') }}</p>

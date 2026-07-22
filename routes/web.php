@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/drivers/tambah',  [DriverController::class, 'create'])->name('drivers.create');
     Route::post('/drivers',        [DriverController::class, 'store'])->name('drivers.store');
     Route::get('/drivers/{driver}',[DriverController::class, 'show'])->name('drivers.show');
+    Route::get('/drivers/{driver}/edit', [DriverController::class, 'edit'])->name('drivers.edit');
+    Route::put('/drivers/{driver}',      [DriverController::class, 'update'])->name('drivers.update');
+    Route::delete('/drivers/{driver}',   [DriverController::class, 'destroy'])->name('drivers.destroy');
 
     // Rekap
     Route::get('/rekap/bulanan', [RekapController::class, 'bulanan'])->name('rekap.bulanan');

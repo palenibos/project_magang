@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login — SiDriver BPU</title>
+    <title>Login — DriverNext</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gradient-to-br from-green-800 via-green-700 to-green-900 min-h-screen flex items-center justify-center p-4">
+<body class="bg-primary min-h-screen flex items-center justify-center p-4">
 
     <div class="w-full max-w-md">
 
         {{-- Logo & Brand --}}
         <div class="text-center mb-8">
             <div class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-2xl">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l2 2h2m2-10h5l3 3v5h-2m-5 0H9"/>
                 </svg>
             </div>
-            <h1 class="text-3xl font-bold text-white tracking-tight">SiDriver BPU</h1>
-            <p class="text-green-200 mt-1 text-sm">Sistem Pendataan Driver BPU</p>
-            <p class="text-green-300 text-xs mt-0.5">BPJS Ketenagakerjaan — ShopeeFood</p>
+            <h1 class="text-3xl font-bold text-white tracking-tight">DriverNext</h1>
+            <p class="text-white/80 mt-1 text-sm">Sistem Pendataan Driver BPU</p>
+            <p class="text-white/60 text-xs mt-0.5">BPJS Ketenagakerjaan — ShopeeFood</p>
         </div>
 
         {{-- Login Card --}}
@@ -87,14 +87,14 @@
                 </div>
 
                 {{-- Submit --}}
-                <button type="submit" id="btn-login" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow-md mt-2">
+                <button type="submit" id="btn-login" class="w-full bg-primary hover:bg-[#7b8a65] text-white font-semibold py-3.5 rounded-xl text-sm transition-all duration-200 shadow-sm hover:shadow-md mt-2">
                     Masuk
                 </button>
             </form>
         </div>
 
-        <p class="text-center text-green-300 text-xs mt-6">
-            © {{ date('Y') }} BPJS Ketenagakerjaan · SiDriver BPU v1.0
+        <p class="text-center text-white/70 text-xs mt-6">
+            © {{ date('Y') }} BPJS Ketenagakerjaan · DriverNext v1.0
         </p>
     </div>
 

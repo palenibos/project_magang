@@ -101,6 +101,19 @@ class DriverController extends Controller
     }
 
     /**
+     * Hapus data driver
+     */
+    public function destroy(Driver $driver)
+    {
+        $tanggal = $driver->tanggal_daftar->toDateString();
+        $driver->delete();
+
+        return redirect()
+            ->route('drivers.index', ['tanggal' => $tanggal])
+            ->with('success', 'Data driver berhasil dihapus.');
+    }
+
+    /**
      * Daftar semua bank di Indonesia
      */
     private function getBankList(): array

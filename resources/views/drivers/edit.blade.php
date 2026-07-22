@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Data Driver')
-@section('page-title', 'Tambah Data Driver')
-@section('page-subtitle', 'Isi formulir berikut untuk mendaftarkan calon driver BPU')
+@section('title', 'Edit Data Driver')
+@section('page-title', 'Edit Data Driver')
+@section('page-subtitle', 'Perbarui informasi data driver')
 
 @section('content')
 
@@ -13,8 +13,9 @@
             <p class="text-sm text-gray-400 mt-0.5">Semua field bertanda <span class="text-red-500">*</span> wajib diisi</p>
         </div>
 
-        <form method="POST" action="{{ route('drivers.store') }}" class="px-8 py-6 space-y-6" autocomplete="off">
+        <form method="POST" action="{{ route('drivers.update', $driver->id) }}" class="px-8 py-6 space-y-6" autocomplete="off">
             @csrf
+            @method('PUT')
 
             {{-- Section: Data Pribadi --}}
             <div>
@@ -33,7 +34,7 @@
                             type="text"
                             id="nik"
                             name="nik"
-                            value="{{ old('nik') }}"
+                            value="{{ old('nik', $driver->nik) }}"
                             maxlength="16"
                             placeholder="16 digit angka"
                             class="w-full border @error('nik') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
@@ -55,7 +56,7 @@
                             type="text"
                             id="nama_lengkap"
                             name="nama_lengkap"
-                            value="{{ old('nama_lengkap') }}"
+                            value="{{ old('nama_lengkap', $driver->nama_lengkap) }}"
                             placeholder="Sesuai KTP"
                             class="w-full border @error('nama_lengkap') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                         >
@@ -76,7 +77,7 @@
                             type="text"
                             id="tempat_lahir"
                             name="tempat_lahir"
-                            value="{{ old('tempat_lahir') }}"
+                            value="{{ old('tempat_lahir', $driver->tempat_lahir) }}"
                             placeholder="Kota/Kabupaten"
                             class="w-full border @error('tempat_lahir') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                         >
@@ -94,7 +95,7 @@
                             type="date"
                             id="tanggal_lahir"
                             name="tanggal_lahir"
-                            value="{{ old('tanggal_lahir') }}"
+                            value="{{ old('tanggal_lahir', $driver->tanggal_lahir->format('Y-m-d')) }}"
                             max="{{ now()->subDay()->toDateString() }}"
                             class="w-full border @error('tanggal_lahir') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                         >
@@ -142,7 +143,7 @@
                             type="tel"
                             id="nomor_hp"
                             name="nomor_hp"
-                            value="{{ old('nomor_hp') }}"
+                            value="{{ old('nomor_hp', $driver->nomor_hp) }}"
                             placeholder="08xxxxxxxxxx"
                             class="w-full border @error('nomor_hp') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                         >
@@ -160,7 +161,7 @@
                             type="email"
                             id="email"
                             name="email"
-                            value="{{ old('email') }}"
+                            value="{{ old('email', $driver->email) }}"
                             placeholder="contoh@email.com"
                             class="w-full border @error('email') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                         >
@@ -193,7 +194,7 @@
                         >
                             <option value="">— Pilih Bank —</option>
                             @foreach($banks as $bank)
-                                <option value="{{ $bank }}" {{ old('nama_bank') === $bank ? 'selected' : '' }}>
+                                <option value="{{ $bank }}" {{ old('nama_bank', $driver->nama_bank) === $bank ? 'selected' : '' }}>
                                     {{ $bank }}
                                 </option>
                             @endforeach
@@ -212,7 +213,7 @@
                             type="text"
                             id="nomor_rekening"
                             name="nomor_rekening"
-                            value="{{ old('nomor_rekening') }}"
+                            value="{{ old('nomor_rekening', $driver->nomor_rekening) }}"
                             placeholder="Nomor rekening aktif"
                             class="w-full border @error('nomor_rekening') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                         >
@@ -246,7 +247,7 @@
                         type="date"
                         id="tanggal_daftar"
                         name="tanggal_daftar"
-                        value="{{ old('tanggal_daftar', now()->toDateString()) }}"
+                        value="{{ old('tanggal_daftar', $driver->tanggal_daftar->format('Y-m-d')) }}"
                         max="{{ now()->toDateString() }}"
                         class="w-full border @error('tanggal_daftar') border-red-400 bg-red-50 @else border-gray-200 @enderror rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                     >
@@ -270,7 +271,7 @@
                     type="text"
                     id="keterangan"
                     name="keterangan"
-                    value="{{ old('keterangan') }}"
+                    value="{{ old('keterangan', $driver->keterangan) }}"
                     placeholder="Catatan tambahan jika ada..."
                     class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
                 >
@@ -281,10 +282,10 @@
                 <a href="{{ route('drivers.index') }}" class="px-5 py-2.5 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-50 text-sm font-medium transition-colors">
                     Batal
                 </a>
-                <button type="submit" id="btn-submit" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2.5 rounded-xl text-sm transition-colors shadow-sm">
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    Simpan Data
-                </button>
+                <button type="submit" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-8 py-3 rounded-xl text-sm transition-colors shadow-sm">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                Perbarui Data
+            </button>
             </div>
         </form>
     </div>
